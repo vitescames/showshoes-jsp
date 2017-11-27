@@ -1,0 +1,37 @@
+.card-img-top{
+    width: 125px !important;
+    margin: auto !important;
+    display: block;
+}   
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px !important;
+  width: 100px !important;
+  outline: black !important;
+  background-size: 100%, 100% !important;
+  border-radius: 50% !important;
+  background-image: none !important;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  color: #1c1c1c; 
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  color: #1c1c1c;
+}
+
+.jumbotron{
+	background-color: #0054a7 !important;
+	margin-top: 20px;
+}
+
+.jumbotron h1{
+	color: white;
+}
