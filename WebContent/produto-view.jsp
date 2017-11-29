@@ -21,14 +21,19 @@
 			<div class="col-lg-3">
 				<h1 class="my-4">OUR TÊNIS</h1>
 				<div class="list-group">
-					<a href="admin?id=3&idProd=${selProd.id}" class="list-group-item active">COMPRAR</a>
+				<form  method="POST" action="admin">
+    				<input type="hidden" name="refresh" value="true">
+    				<input type="hidden" name="id" value="6">
+    				<input type="hidden" name="idProd" value="${selProd.id}">
+					<button type="submit" class="list-group-item active">COMPRAR</button>
+				</form>
 				</div>
 			</div>
 
 			<div class="col-lg-9">
 
 				<div class="card mt-4">
-										<h3 class="card-title">${selProd.desc}</h3>
+					<h3 class="card-title">${selProd.desc}</h3>
 					<img class="card-img-top img-fluid"
 						src="${selProd.urlImg}" alt="">
 					<div class="card-body">

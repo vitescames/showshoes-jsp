@@ -12,6 +12,11 @@ body {
     background-color: #0054a7!important;
 }
 
+.badge{
+	background-color: white;
+	color:  #0054a7!important;
+}
+
 @media (min-width: 992px) {
     body {
         padding-top: 56px;

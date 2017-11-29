@@ -20,7 +20,17 @@
 					<c:if test="${login == true}">
 						<li class="nav-item"><a class="nav-link" href="admin?id=3">Sair</a></li>
 					</c:if>
-					<li style="padding-top: 8px;"> <i style="color: white;" class="fa fa-search fa-shopping-cart" aria-hidden="true"></i> </li>				
+					<a href="admin?id=5">
+						<li style="padding-top: 8px;"> 
+							<i style="color: white;" class="fa fa-search fa-shopping-cart" aria-hidden="true"></i>
+							<c:if test="${quantCarrinho eq null}">
+								<span class="badge">0</span></a>
+							</c:if>
+							<c:if test="${quantCarrinho ne null}">
+								<span class="badge">${quantCarrinho}</span></a>
+							</c:if>
+						</li>			
+					</a>	
 				</ul>
 			</div>
 		</div>

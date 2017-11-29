@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.fiap.ps.rwd.bean.LinhaItem;
 import br.com.fiap.ps.rwd.bean.Pagina;
 import br.com.fiap.ps.rwd.bean.ProdutoBean;
 import br.com.fiap.ps.rwd.bean.Usuario;
@@ -87,6 +88,20 @@ public class Administrador extends HttpServlet {
 				}
 				
 				break;
+			case 5:
+				
+				exibirCarrinho(request, response, session);
+				
+				break;
+			case 6:
+				
+				try {
+					selecionarItem(request, response, session);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				break;
 			default:
 				break;
 			}
@@ -110,6 +125,7 @@ public class Administrador extends HttpServlet {
 		
 		if(userLogged != null) {
 			session.setAttribute("login", true);
+			session.setAttribute("idUsuario", userLogged.getId());
 			session.setAttribute("user", userLogged.getUser());
 			
 			exibicaoProdutos(request, response);
@@ -138,6 +154,56 @@ public class Administrador extends HttpServlet {
 		listagem(request, response, 3);
 		
 		request.getRequestDispatcher("index.jsp").forward(request, response);
+		
+	}
+	
+	private void exibirCarrinho(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
+		
+		List<LinhaItem> listaLinhaItens = (ArrayList<LinhaItem>) session.getAttribute("carrinho");
+		request.setAttribute("listaLinhas", listaLinhaItens);
+		request.getRequestDispatcher("carrinho.jsp").forward(request, response);
+	}
+	
+	private void selecionarItem(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ClassNotFoundException, SQLException, ServletException, IOException {
+						
+		List<LinhaItem> listaLinhaItens = (ArrayList<LinhaItem>) session.getAttribute("carrinho");
+
+		int idProd = Integer.parseInt(request.getParameter("idProd"));	
+		ProdutoBean produtoSelecionado = ProdutoBO.pesquisa(idProd);
+		boolean existe = false;			
+			
+		if(listaLinhaItens != null) {
+			
+			for (LinhaItem linhaItem : listaLinhaItens) {
+				if(linhaItem.getProduto().getDesc().equals(produtoSelecionado.getDesc())) {
+					linhaItem.setQuantidade(linhaItem.getQuantidade() + 1);
+					session.setAttribute("carrinho", listaLinhaItens);	
+					existe = true;
+				} else {
+					existe = false;						
+				}
+				break;
+			}
+			
+		}
+		
+		if(listaLinhaItens == null || existe == false) {			
+			
+			if(listaLinhaItens == null) {
+				listaLinhaItens = new ArrayList<LinhaItem>();
+			}
+			
+			LinhaItem linhaItem = new LinhaItem();
+			linhaItem.setQuantidade(1);
+			linhaItem.setProduto(produtoSelecionado);
+			listaLinhaItens.add(linhaItem);
+			session.setAttribute("carrinho", listaLinhaItens);
+			
+		}		
+				
+		request.setAttribute("listaLinhas", listaLinhaItens);
+		session.setAttribute("quantCarrinho", listaLinhaItens.size());
+		request.getRequestDispatcher("carrinho.jsp").forward(request, response);		
 		
 	}
 
