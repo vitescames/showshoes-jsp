@@ -5,6 +5,7 @@ public class Usuario {
 	private int id;
 	private String password;
 	private String user;
+	private String endereco;
 	
 	public int getId() {
 		return id;
@@ -23,6 +24,12 @@ public class Usuario {
 	}
 	public void setUser(String user) {
 		this.user = user;
-	}	
+	}
+	public String getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
 
 }

@@ -3,7 +3,10 @@ package br.com.fiap.ps.rwd.controller;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,8 +20,11 @@ import javax.servlet.http.HttpSession;
 
 import br.com.fiap.ps.rwd.bean.LinhaItem;
 import br.com.fiap.ps.rwd.bean.Pagina;
+import br.com.fiap.ps.rwd.bean.Pedido;
 import br.com.fiap.ps.rwd.bean.ProdutoBean;
 import br.com.fiap.ps.rwd.bean.Usuario;
+import br.com.fiap.ps.rwd.bo.LinhaItemBO;
+import br.com.fiap.ps.rwd.bo.PedidoBO;
 import br.com.fiap.ps.rwd.bo.ProdutoBO;
 import br.com.fiap.ps.rwd.bo.UsuarioBO;
 
@@ -35,6 +41,10 @@ public class Administrador extends HttpServlet {
 		String idParam = null;
 		
 		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("carrinho") == null) {
+			session.setAttribute("quantCarrinho", null);
+		}
 
 		idParam = request.getParameter("id");
 		int id = 1;		
@@ -102,6 +112,24 @@ public class Administrador extends HttpServlet {
 				}
 				
 				break;
+			case 7:
+				
+				try {
+					comprar(request, response, session);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				break;
+			case 8:
+				
+				try {
+					exibirPedidos(request, response, session);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				break;
 			default:
 				break;
 			}
@@ -113,6 +141,49 @@ public class Administrador extends HttpServlet {
 		request.setAttribute("selProd", ProdutoBO.pesquisa(Integer.parseInt(request.getParameter("idProd"))));
 		request.getRequestDispatcher("produto-view.jsp").forward(request, response);
 
+	}
+	
+	private void exibirPedidos(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ClassNotFoundException, ParseException, SQLException, ServletException, IOException {
+		
+		List<Pedido> listaPedidos = new ArrayList<Pedido>();
+		
+		if(session.getAttribute("login") == null) {
+			
+		} else {
+			request.setAttribute("listaPedidos", PedidoBO.selecionaPorUsuario((int) session.getAttribute("idUsuario")));
+			request.getRequestDispatcher("pedido.jsp").forward(request, response);
+		}
+	}
+	
+	private void comprar(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException, ClassNotFoundException, SQLException {
+		
+		if(session.getAttribute("login") == null) {
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+			session.setAttribute("loginToBuy", true);
+		} else {			
+			
+			Date dt = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+			String currentTime = sdf.format(dt);
+			
+			Pedido pedido = new Pedido();
+			pedido.setDate(currentTime);
+			pedido.setUsuario(UsuarioBO.trazUsuario((int) session.getAttribute("idUsuario")));
+			
+			PedidoBO.adicionarPedido(pedido);
+			
+			List<LinhaItem> listaLinhaItens = (ArrayList<LinhaItem>) session.getAttribute("carrinho");
+			
+			for (LinhaItem linhaItem : listaLinhaItens) {
+				linhaItem.setPedido(PedidoBO.selecionaUltimoPedido());
+				LinhaItemBO.adicionaLinhaItem(linhaItem);
+			}
+			
+			session.setAttribute("quantCarrinho", 0);
+			session.setAttribute("carrinho", null);
+			request.getRequestDispatcher("admin?id=8").forward(request, response);			
+		}
+		
 	}
 	
 	private void login(HttpServletRequest request, HttpServletResponse response, String user, String password, HttpSession session) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException, ServletException, IOException {
@@ -128,7 +199,11 @@ public class Administrador extends HttpServlet {
 			session.setAttribute("idUsuario", userLogged.getId());
 			session.setAttribute("user", userLogged.getUser());
 			
-			exibicaoProdutos(request, response);
+			if(session.getAttribute("loginToBuy") == null) {
+				exibicaoProdutos(request, response);
+			} else {
+				request.getRequestDispatcher("admin?id=5").forward(request, response);
+			}
 		}
 		
 	}
@@ -179,10 +254,10 @@ public class Administrador extends HttpServlet {
 					linhaItem.setQuantidade(linhaItem.getQuantidade() + 1);
 					session.setAttribute("carrinho", listaLinhaItens);	
 					existe = true;
+					break;
 				} else {
 					existe = false;						
-				}
-				break;
+				}				
 			}
 			
 		}
@@ -199,9 +274,16 @@ public class Administrador extends HttpServlet {
 			listaLinhaItens.add(linhaItem);
 			session.setAttribute("carrinho", listaLinhaItens);
 			
-		}		
+		}
+		
+		double total = 0;
+		
+		for (LinhaItem linhaItem : listaLinhaItens) {
+			total += linhaItem.getProduto().getValor() * linhaItem.getQuantidade();
+		}
 				
 		request.setAttribute("listaLinhas", listaLinhaItens);
+		session.setAttribute("precoTotal", total);
 		session.setAttribute("quantCarrinho", listaLinhaItens.size());
 		request.getRequestDispatcher("carrinho.jsp").forward(request, response);		
 		

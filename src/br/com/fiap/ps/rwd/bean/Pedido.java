@@ -6,8 +6,7 @@ public class Pedido {
 	
 	private int id;
 	private Usuario usuario;
-	private Date date;
-	
+	private String date;
 	
 	public int getId() {
 		return id;
@@ -21,13 +20,11 @@ public class Pedido {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
-	}
-	
-	
+	}	
 
 }

@@ -41,7 +41,32 @@ public class UsuarioDAO {
 		
 		if(rs.next()) {
 			usuario = new Usuario();
+			usuario.setId(rs.getInt("id"));
+			usuario.setEndereco(rs.getString("endereco"));
+			usuario.setUser(rs.getString("login"));
+			usuario.setPassword(rs.getString("senha"));
 			System.out.println("Entrou!");
+		}
+		
+		return usuario;
+		
+	}
+	
+	public Usuario select(int id) throws SQLException {
+		ps = c.prepareStatement("SELECT * FROM usuario WHERE id = ?");
+		
+		ps.setInt(1, id);
+		
+		rs = ps.executeQuery();
+
+		Usuario usuario = null;
+		
+		if(rs.next()) {
+			usuario = new Usuario();
+			usuario.setId(rs.getInt("id"));
+			usuario.setEndereco(rs.getString("endereco"));
+			usuario.setUser(rs.getString("login"));
+			usuario.setPassword(rs.getString("senha"));
 		}
 		
 		return usuario;

@@ -12,5 +12,10 @@ public class UsuarioBO {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		return usuarioDAO.login(user);
 	}
+	
+	public static Usuario trazUsuario(int id) throws SQLException, ClassNotFoundException {
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		return usuarioDAO.select(id);
+	}
 
 }
