@@ -148,7 +148,7 @@ public class Administrador extends HttpServlet {
 		List<Pedido> listaPedidos = new ArrayList<Pedido>();
 		
 		if(session.getAttribute("login") == null) {
-			
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		} else {
 			request.setAttribute("listaPedidos", PedidoBO.selecionaPorUsuario((int) session.getAttribute("idUsuario")));
 			request.getRequestDispatcher("pedido.jsp").forward(request, response);

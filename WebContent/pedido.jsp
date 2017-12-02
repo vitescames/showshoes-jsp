@@ -15,12 +15,6 @@
 		</c:forEach>
 	</div>
 	
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; SHOES SHOW - 2017</p>
-		</div>
-	</footer>
-
 <%@ include file="import-footer.jsp" %>
 	
 	<script src="vendor/jquery/jquery.js"></script>

@@ -15,7 +15,7 @@
 
 <%@ include file="nav-bar.jsp" %>
 
-	<div class="container">
+	<div class="col-sm-12">
 	
 		<div class="jumbotron">
 			<h1>Promoção na Show Shoes!</h1>
@@ -30,7 +30,7 @@
 			    <c:if test="${p.index ne 1}">
 			   		<div class="carousel-item">
 			    </c:if>
-					<div class="row">
+					<div class="row col-sm-10" style="margin:auto;">
 			  			<c:forEach var="i" items="${p.listaProdutos}">
 								<%@ include file="main-view.jsp" %>
 			      		</c:forEach>
@@ -50,12 +50,6 @@
 		
 	</div>
 	
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; SHOES SHOW - 2017</p>
-		</div>
-	</footer>
-
 <%@ include file="import-footer.jsp" %>
 
 </body>

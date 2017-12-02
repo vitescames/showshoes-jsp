@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+img{
+	width: 150px;
+}
+
+.produto-table p{
+    margin-top: 15px;
+}
+
+.quantidade-table input{	
+  	width: 80px;
+}
+
+.quantidade-table{
+    padding-bottom: 90px;
+}
+
+thead{
+	background-color: #19993f;
+	color:white;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  opacity: 1;
+}
+
+th{
+	padding: 10px;
+}
+
+.container:nth-child(2){
+	margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+tr{
+	border-bottom: 3px solid #19993f;
+}
+
+table{
+	border: 3px solid #19993f;
+    margin-bottom: 15px;
+}
+
+.row{
+	margin-left: 15px !important;
+	margin-right: 15px !important;
+}

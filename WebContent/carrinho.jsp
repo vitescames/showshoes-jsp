@@ -7,6 +7,7 @@
 <head>
 
 <%@ include file="import-head.jsp"%>
+<link rel="stylesheet" type="text/css" href="css/carrinho.css"/>	
 
 </head>
 <body>
@@ -18,12 +19,32 @@
 			<p>Não há itens no carrinho!</p>
 		</c:if>
 		<c:if test="${listaLinhas ne null}">
+						<table class="col-sm-12">
+							<thead>
+								<th>Produto</th>
+								<th>Quantidade</th>
+							</thead>
+						<tbody>
 			<c:forEach items="${listaLinhas}" var="l">
-				<p>${l.produto.desc}</p>
-				<p>${l.quantidade}</p>
-			</c:forEach>
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#compra">Launch demo modal</button>
-			
+					<tr>
+						<td class="produto-table">
+							<div class="row">
+								<div class="col-md-3 col-sm-5">
+									<img src="${l.produto.urlImg}"/>
+								</div>
+								<div class="col-md-4 col-sm-6">
+									<p>${l.produto.desc}</p>
+								</div>
+							</div>
+						</td>
+						<td class="quantidade-table">
+							<input type="number" value="${l.quantidade}" name="q">
+						</td>
+					</tr>			
+			</c:forEach>			
+				</tbody>	
+			</table>					
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#compra">Realizar Compra</button>			
 			<div class="modal fade" id="compra" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
@@ -49,12 +70,6 @@
 				
 		</c:if>	
 	</div>
-	
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; SHOES SHOW - 2017</p>
-		</div>
-	</footer>
 
 <%@ include file="import-footer.jsp" %>
 	

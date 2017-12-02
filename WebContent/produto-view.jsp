@@ -7,6 +7,7 @@
 <head>
 
 <%@ include file="import-head.jsp"%>
+<link rel="stylesheet" type="text/css" href="css/produto-view.css"/>	
 
 </head>
 
@@ -44,12 +45,6 @@
 			</div>
 		</div>
 	</div>
-
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; OUR SHOES-2017</p>
-		</div>
-	</footer>
 
 	<%@ include file="import-footer.jsp"%>
 </body>

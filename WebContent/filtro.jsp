@@ -7,7 +7,7 @@
 
 <head>
 
-<link rel="stylesheet" type="text/css" href="css/index.css"/>
+<link rel="stylesheet" type="text/css" href="css/filtro.css"/>
 
 <%@ include file="import-head.jsp" %>
 
@@ -16,52 +16,54 @@
 
 <%@ include file="nav-bar.jsp" %>
 
-	<div class="container">
-		<c:if test="${quant eq 1}">
-			<c:forEach var="p" items="${listaPagina}">
-				<div class="row">
-		  			<c:forEach var="i" items="${p.listaProdutos}">
-							<%@ include file="main-view.jsp" %>
-		      		</c:forEach>
-				</div>
-		   	</c:forEach>
-		</c:if>
-		<c:if test="${quant ne 1}">
-			<div id="carouselExampleControls" class="carousel slide" data-interval="5000" data-ride="carousel">
-			  <div class="carousel-inner" role="listbox">
-			  	<c:forEach var="p" items="${listaPagina}">
-			  		<c:if test="${p.index eq 1}">
-				   		<div class="carousel-item active">
-				    </c:if>
-				    <c:if test="${p.index ne 1}">
-				   		<div class="carousel-item">
-				    </c:if>
-						<div class="row">
-				  			<c:forEach var="i" items="${p.listaProdutos}">
-									<%@ include file="main-view.jsp" %>
-				      		</c:forEach>
-						</div>
-				    </div>
-			   	</c:forEach>
-			  </div>
-			  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Previous</span>
-			  </a>
-			  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			    <span class="sr-only">Next</span>
-			  </a>
-			</div>
-		</c:if>
-		
-	</div>
-	
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; SHOES SHOW - 2017</p>
+	<div class="row principal">
+
+		<div class="col-sm-3">
+			
 		</div>
-	</footer>
+
+		<div class="col-sm-9">
+			<c:if test="${quant eq 1}">
+				<c:forEach var="p" items="${listaPagina}">
+					<div class="row">
+			  			<c:forEach var="i" items="${p.listaProdutos}">
+								<%@ include file="main-view.jsp" %>
+			      		</c:forEach>
+					</div>
+		   		</c:forEach>
+			</c:if>
+			<c:if test="${quant ne 1}">
+				<div id="carouselExampleControls" class="carousel slide" data-interval="5000" data-ride="carousel">
+				  <div class="carousel-inner" role="listbox">
+				  	<c:forEach var="p" items="${listaPagina}">
+				  		<c:if test="${p.index eq 1}">
+					   		<div class="carousel-item active">
+					    </c:if>
+					    <c:if test="${p.index ne 1}">
+					   		<div class="carousel-item">
+					    </c:if>
+							<div class="row">
+					  			<c:forEach var="i" items="${p.listaProdutos}">
+										<%@ include file="main-view.jsp" %>
+					      		</c:forEach>
+							</div>
+					    </div>
+				   	</c:forEach>
+				  </div>
+				  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				    <span class="sr-only">Previous</span>
+				  </a>
+				  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				    <span class="sr-only">Next</span>
+				  </a>
+				</div>
+			</c:if>
+		
+		</div>
+	
+	</div>		
 
 <%@ include file="import-footer.jsp" %>
 

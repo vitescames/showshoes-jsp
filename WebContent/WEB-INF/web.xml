@@ -8,7 +8,7 @@
     <error-code>404</error-code>
     <location>/erro404.jsp</location>
   </error-page>
-  <session-config>
+  <!-- <session-config>
     <session-timeout>1</session-timeout>
-  </session-config>
+  </session-config> -->
 </web-app>
