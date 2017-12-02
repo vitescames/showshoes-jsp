@@ -242,7 +242,7 @@ public class Administrador extends HttpServlet {
 	private void selecionarItem(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ClassNotFoundException, SQLException, ServletException, IOException {
 						
 		List<LinhaItem> listaLinhaItens = (ArrayList<LinhaItem>) session.getAttribute("carrinho");
-
+		
 		int idProd = Integer.parseInt(request.getParameter("idProd"));	
 		ProdutoBean produtoSelecionado = ProdutoBO.pesquisa(idProd);
 		boolean existe = false;			
@@ -251,7 +251,11 @@ public class Administrador extends HttpServlet {
 			
 			for (LinhaItem linhaItem : listaLinhaItens) {
 				if(linhaItem.getProduto().getDesc().equals(produtoSelecionado.getDesc())) {
-					linhaItem.setQuantidade(linhaItem.getQuantidade() + 1);
+					if(request.getParameter("quant") == null) {
+						linhaItem.setQuantidade(linhaItem.getQuantidade() + 1);
+					} else {
+						linhaItem.setQuantidade(Integer.parseInt(request.getParameter("quant")));
+					}
 					session.setAttribute("carrinho", listaLinhaItens);	
 					existe = true;
 					break;
