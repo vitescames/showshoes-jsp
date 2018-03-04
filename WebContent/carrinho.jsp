@@ -33,7 +33,7 @@
 									<img src="${l.produto.urlImg}"/>
 								</div>
 								<div class="col-md-4 col-sm-6">
-									<p>${l.produto.desc}</p>
+									<p style="font-weight: bold">${l.produto.desc}</p>
 								</div>
 							</div>
 						</td>

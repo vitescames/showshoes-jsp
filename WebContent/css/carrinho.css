@@ -14,10 +14,10 @@ img{
 
 .quantidade-table{
     padding-bottom: 90px;
-}
+}  
 
 thead{
-	background-color: #19993f;
+	background-color: #28a745;
 	color:white;
 }
 
@@ -35,11 +35,11 @@ th{
 }
 
 tr{
-	border-bottom: 3px solid #19993f;
+	border-bottom: 3px solid #28a745;
 }
-
+    
 table{
-	border: 3px solid #19993f;
+	border: 3px solid #28a745;
     margin-bottom: 15px;
 }
 

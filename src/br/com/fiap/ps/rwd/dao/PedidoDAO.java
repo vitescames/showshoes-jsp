@@ -1,6 +1,7 @@
 package br.com.fiap.ps.rwd.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fiap.ps.rwd.bean.Pedido;
+import br.com.fiap.ps.rwd.bo.LinhaItemBO;
+import br.com.fiap.ps.rwd.bo.UsuarioBO;
 import br.com.showshoes.connection.ConnectionFactory;
 
 public class PedidoDAO {
@@ -28,13 +31,13 @@ public class PedidoDAO {
 		ps = c.prepareStatement("INSERT INTO pedido (id_cliente, data_realizado) VALUES (?,?)");
 		
 		ps.setInt(1, pedido.getUsuario().getId());
-		ps.setString(2, pedido.getDate());
+		ps.setTimestamp(2, pedido.getDate());
 		
 		return ps.execute();
 		
 	}
 	
-	public List<Pedido> selectOrderByUser(int id) throws ParseException, SQLException{
+	public List<Pedido> selectOrderByUser(int id) throws ParseException, SQLException, ClassNotFoundException{
 		ps = c.prepareStatement("SELECT * FROM pedido WHERE id_cliente = ?");
 		
 		ps.setInt(1, id);
@@ -47,8 +50,10 @@ public class PedidoDAO {
 		
 		while(rs.next()) {
 			pedido = new Pedido();
+			pedido.setUsuario(UsuarioBO.trazUsuario(id));
 			pedido.setId(rs.getInt("id"));
-			pedido.setDate(rs.getString("data_realizado"));
+			pedido.setDate(rs.getTimestamp("data_realizado"));
+			pedido.setListLinhaItens(LinhaItemBO.trazItensPorPedido(pedido.getId()));
 			listaPedidos.add(pedido);
 		}
 		

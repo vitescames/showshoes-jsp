@@ -5,6 +5,8 @@ public class Usuario {
 	private int id;
 	private String password;
 	private String user;
+	private String nome;
+	private String sobrenome;
 	private String endereco;
 	
 	public int getId() {
@@ -30,6 +32,18 @@ public class Usuario {
 	}
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getSobrenome() {
+		return sobrenome;
+	}
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
 	}
 
 }

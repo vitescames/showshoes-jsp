@@ -1,12 +1,14 @@
 package br.com.fiap.ps.rwd.bean;
 
-import java.util.Date;
+import java.sql.Timestamp;
+import java.util.List;
 
 public class Pedido {
 	
 	private int id;
 	private Usuario usuario;
-	private String date;
+	private Timestamp date;
+	private List<LinhaItem> listLinhaItens;
 	
 	public int getId() {
 		return id;
@@ -20,11 +22,17 @@ public class Pedido {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	public String getDate() {
+	public Timestamp getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Timestamp date) {
 		this.date = date;
+	}
+	public List<LinhaItem> getListLinhaItens() {
+		return listLinhaItens;
+	}
+	public void setListLinhaItens(List<LinhaItem> listLinhaItens) {
+		this.listLinhaItens = listLinhaItens;
 	}	
 
 }

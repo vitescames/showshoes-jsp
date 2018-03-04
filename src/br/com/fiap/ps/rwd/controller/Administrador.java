@@ -3,6 +3,7 @@ package br.com.fiap.ps.rwd.controller;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -163,11 +164,11 @@ public class Administrador extends HttpServlet {
 		} else {			
 			
 			Date dt = new Date();
+			Timestamp dateSQL = new Timestamp(dt.getTime());
 			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-			String currentTime = sdf.format(dt);
 			
 			Pedido pedido = new Pedido();
-			pedido.setDate(currentTime);
+			pedido.setDate(dateSQL);
 			pedido.setUsuario(UsuarioBO.trazUsuario((int) session.getAttribute("idUsuario")));
 			
 			PedidoBO.adicionarPedido(pedido);
@@ -175,7 +176,7 @@ public class Administrador extends HttpServlet {
 			List<LinhaItem> listaLinhaItens = (ArrayList<LinhaItem>) session.getAttribute("carrinho");
 			
 			for (LinhaItem linhaItem : listaLinhaItens) {
-				linhaItem.setPedido(PedidoBO.selecionaUltimoPedido());
+				linhaItem.setPedido(PedidoBO.selecionaUltimoPedido().getId());
 				LinhaItemBO.adicionaLinhaItem(linhaItem);
 			}
 			

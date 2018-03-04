@@ -10,15 +10,16 @@
 	<%@ include file="nav-bar.jsp" %>
 
 	<div class="container">	
-		<c:forEach items="${listaPedidos}">
-			<div>Oi</div>
+		<c:forEach var="pedido" items="${listaPedidos}">
+			<div>${pedido.id}</div>
+			<div>${pedido.usuario.user}</div>
+			<c:forEach var="linhaItem" items="${pedido.listLinhaItens}">
+				<div>${linhaItem.produto.desc}</div>
+			</c:forEach>
 		</c:forEach>
 	</div>
 	
 <%@ include file="import-footer.jsp" %>
-	
-	<script src="vendor/jquery/jquery.js"></script>
-	<script src="vendor/popper/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.js"></script>	
+
 </body>
 </html>

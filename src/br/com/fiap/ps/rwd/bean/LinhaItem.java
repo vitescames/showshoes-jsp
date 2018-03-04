@@ -8,7 +8,7 @@ public class LinhaItem {
 	private ProdutoBean produto;
 	private int quantidade;
 	private int id;
-	private Pedido pedido;
+	private int pedido;
 	
 	
 	public ProdutoBean getProduto() {
@@ -29,10 +29,10 @@ public class LinhaItem {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Pedido getPedido() {
+	public int getPedido() {
 		return pedido;
 	}
-	public void setPedido(Pedido pedido) {
+	public void setPedido(int pedido) {
 		this.pedido = pedido;
 	}
 	

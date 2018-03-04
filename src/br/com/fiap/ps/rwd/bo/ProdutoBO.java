@@ -10,12 +10,14 @@ public class ProdutoBO {
 	
 	public static List<ProdutoBean> pesquisa() throws ClassNotFoundException, SQLException{
 		ProdutoDAO pd = new ProdutoDAO();
-		return pd.select();
+		List<ProdutoBean> lista = pd.select();
+		return lista;
 	}
 	
 	public static ProdutoBean pesquisa(int id) throws ClassNotFoundException, SQLException{
 		ProdutoDAO pd = new ProdutoDAO();
-		return pd.select(id);
+		ProdutoBean produtoBean = pd.select(id);
+		return produtoBean;
 	}
 
 }

@@ -11,17 +11,20 @@ public class PedidoBO {
 	
 	public static boolean adicionarPedido(Pedido pedido) throws ClassNotFoundException, SQLException {
 		PedidoDAO pedidoDAO = new PedidoDAO();
-		return pedidoDAO.add(pedido);
+		boolean bool = pedidoDAO.add(pedido);
+		return bool;
 	}
 	
 	public static Pedido selecionaUltimoPedido() throws SQLException, ClassNotFoundException {
 		PedidoDAO pedidoDAO = new PedidoDAO();
-		return pedidoDAO.selectLastOrder();
+		Pedido pedido = pedidoDAO.selectLastOrder();
+		return pedido;
 	}
 	
 	public static List<Pedido> selecionaPorUsuario(int id) throws ParseException, SQLException, ClassNotFoundException{
 		PedidoDAO pedidoDAO = new PedidoDAO();
-		return pedidoDAO.selectOrderByUser(id);
+		List<Pedido> lista = pedidoDAO.selectOrderByUser(id); 
+		return lista;
 	}
 
 }
