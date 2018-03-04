@@ -171,18 +171,23 @@ public class Administrador extends HttpServlet {
 			pedido.setDate(dateSQL);
 			pedido.setUsuario(UsuarioBO.trazUsuario((int) session.getAttribute("idUsuario")));
 			
-			PedidoBO.adicionarPedido(pedido);
-			
 			List<LinhaItem> listaLinhaItens = (ArrayList<LinhaItem>) session.getAttribute("carrinho");
 			
-			for (LinhaItem linhaItem : listaLinhaItens) {
-				linhaItem.setPedido(PedidoBO.selecionaUltimoPedido().getId());
-				LinhaItemBO.adicionaLinhaItem(linhaItem);
-			}
-			
-			session.setAttribute("quantCarrinho", 0);
-			session.setAttribute("carrinho", null);
-			request.getRequestDispatcher("admin?id=8").forward(request, response);			
+			if(listaLinhaItens != null && !listaLinhaItens.isEmpty()) {
+				PedidoBO.adicionarPedido(pedido);			
+
+				for (LinhaItem linhaItem : listaLinhaItens) {
+					linhaItem.setPedido(PedidoBO.selecionaUltimoPedido().getId());
+					LinhaItemBO.adicionaLinhaItem(linhaItem);
+				}
+				
+				session.setAttribute("quantCarrinho", 0);
+				session.setAttribute("carrinho", null);
+				request.getRequestDispatcher("admin?id=8").forward(request, response);	
+			} else {
+				request.getRequestDispatcher("erro404.jsp").forward(request, response);
+			}			
+		
 		}
 		
 	}
