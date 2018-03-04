@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.19, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.21, for Win64 (x86_64)
 --
 -- Host: localhost    Database: showshoes
 -- ------------------------------------------------------
--- Server version	5.7.19-log
+-- Server version	5.7.21-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -32,7 +32,7 @@ CREATE TABLE `linha_item` (
   KEY `id_pedido` (`id_pedido`),
   CONSTRAINT `linha_item_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`),
   CONSTRAINT `linha_item_ibfk_2` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `linha_item` (
 
 LOCK TABLES `linha_item` WRITE;
 /*!40000 ALTER TABLE `linha_item` DISABLE KEYS */;
-INSERT INTO `linha_item` VALUES (2,1,1,1),(3,1,2,2),(4,1,3,3),(5,1,4,2),(6,1,5,3),(7,3,6,2),(8,2,6,3),(9,3,7,2),(10,2,7,3),(11,3,8,2),(12,2,8,3),(13,1,9,2),(14,2,10,2),(15,1,11,2),(16,1,12,2),(17,1,13,2),(18,1,14,2);
+INSERT INTO `linha_item` VALUES (2,1,1,1),(3,1,2,2),(4,1,3,3),(5,1,4,2),(6,1,5,3),(7,3,6,2),(8,2,6,3),(9,3,7,2),(10,2,7,3),(11,3,8,2),(12,2,8,3),(13,1,9,2),(14,2,10,2),(15,1,11,2),(16,1,12,2),(17,1,13,2),(18,1,14,2),(19,2,15,1),(20,1,16,1),(21,1,17,1),(22,1,18,2),(23,1,18,3),(24,1,19,1),(25,4,19,5);
 /*!40000 ALTER TABLE `linha_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,11 +55,11 @@ DROP TABLE IF EXISTS `pedido`;
 CREATE TABLE `pedido` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_cliente` bigint(20) NOT NULL,
-  `data_realizado` varchar(50) NOT NULL,
+  `data_realizado` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `id_cliente` (`id_cliente`),
   CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +68,7 @@ CREATE TABLE `pedido` (
 
 LOCK TABLES `pedido` WRITE;
 /*!40000 ALTER TABLE `pedido` DISABLE KEYS */;
-INSERT INTO `pedido` VALUES (1,1,'01-12-2017 23:07:50'),(2,1,'01-12-2017 23:33:50'),(3,1,'02-12-2017 00:16:18'),(4,1,'02-12-2017 00:19:55'),(5,1,'02-12-2017 00:21:47'),(6,1,'02-12-2017 00:23:57'),(7,1,'02-12-2017 00:24:04'),(8,1,'02-12-2017 00:24:23'),(9,1,'02-12-2017 00:27:01'),(10,1,'02-12-2017 00:27:29'),(11,1,'02-12-2017 00:28:50'),(12,1,'02-12-2017 00:29:03'),(13,1,'02-12-2017 00:29:09'),(14,1,'02-12-2017 00:30:31');
+INSERT INTO `pedido` VALUES (1,1,'2018-03-04 16:02:27'),(2,1,'2018-03-04 16:02:27'),(3,1,'2018-03-04 16:02:27'),(4,1,'2018-03-04 16:02:27'),(5,1,'2018-03-04 16:02:27'),(6,1,'2018-03-04 16:02:27'),(7,1,'2018-03-04 16:02:27'),(8,1,'2018-03-04 16:02:27'),(9,1,'2018-03-04 16:02:27'),(10,1,'2018-03-04 16:02:27'),(11,1,'2018-03-04 16:02:27'),(12,1,'2018-03-04 16:02:27'),(13,1,'2018-03-04 16:02:27'),(14,1,'2018-03-04 16:02:27'),(15,1,'2018-03-04 16:02:27'),(16,1,'2018-03-04 03:00:00'),(17,1,'2018-03-04 16:25:02'),(18,1,'2018-03-04 17:12:25'),(19,1,'2018-03-04 17:12:49');
 /*!40000 ALTER TABLE `pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,4 +138,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-02  1:58:09
+-- Dump completed on 2018-03-04 14:17:58
