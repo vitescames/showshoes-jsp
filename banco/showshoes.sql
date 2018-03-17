@@ -16,6 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `endereco`
+--
+
+DROP TABLE IF EXISTS `endereco`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `endereco` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `logradouro` varchar(100) NOT NULL,
+  `bairro` varchar(100) NOT NULL,
+  `estado` varchar(100) NOT NULL,
+  `cidade` varchar(100) NOT NULL,
+  `numero` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `endereco`
+--
+
+LOCK TABLES `endereco` WRITE;
+/*!40000 ALTER TABLE `endereco` DISABLE KEYS */;
+INSERT INTO `endereco` VALUES (1,'fadfad','fdsfsdf','dsfsdfs','dsfsdfs',212);
+/*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `linha_item`
 --
 
@@ -32,7 +60,7 @@ CREATE TABLE `linha_item` (
   KEY `id_pedido` (`id_pedido`),
   CONSTRAINT `linha_item_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id`),
   CONSTRAINT `linha_item_ibfk_2` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +69,7 @@ CREATE TABLE `linha_item` (
 
 LOCK TABLES `linha_item` WRITE;
 /*!40000 ALTER TABLE `linha_item` DISABLE KEYS */;
-INSERT INTO `linha_item` VALUES (2,1,1,1),(3,1,2,2),(4,1,3,3),(5,1,4,2),(6,1,5,3),(7,3,6,2),(8,2,6,3),(9,3,7,2),(10,2,7,3),(11,3,8,2),(12,2,8,3),(13,1,9,2),(14,2,10,2),(15,1,11,2),(16,1,12,2),(17,1,13,2),(18,1,14,2),(19,2,15,1),(20,1,16,1),(21,1,17,1),(22,1,18,2),(23,1,18,3),(24,1,19,1),(25,4,19,5);
+INSERT INTO `linha_item` VALUES (2,1,1,1),(3,1,2,2),(4,1,3,3),(5,1,4,2),(6,1,5,3),(7,3,6,2),(8,2,6,3),(9,3,7,2),(10,2,7,3),(11,3,8,2),(12,2,8,3),(13,1,9,2),(14,2,10,2),(15,1,11,2),(16,1,12,2),(17,1,13,2),(18,1,14,2),(19,2,15,1),(20,1,16,1),(21,1,17,1),(22,1,18,2),(23,1,18,3),(24,1,19,1),(25,4,19,5),(26,1,21,2),(27,1,22,2),(28,1,22,3),(29,1,22,6),(30,1,23,4),(31,1,24,5),(32,2,25,1);
 /*!40000 ALTER TABLE `linha_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,10 +84,11 @@ CREATE TABLE `pedido` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_cliente` bigint(20) NOT NULL,
   `data_realizado` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `valor` decimal(10,0) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_cliente` (`id_cliente`),
   CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +97,7 @@ CREATE TABLE `pedido` (
 
 LOCK TABLES `pedido` WRITE;
 /*!40000 ALTER TABLE `pedido` DISABLE KEYS */;
-INSERT INTO `pedido` VALUES (1,1,'2018-03-04 16:02:27'),(2,1,'2018-03-04 16:02:27'),(3,1,'2018-03-04 16:02:27'),(4,1,'2018-03-04 16:02:27'),(5,1,'2018-03-04 16:02:27'),(6,1,'2018-03-04 16:02:27'),(7,1,'2018-03-04 16:02:27'),(8,1,'2018-03-04 16:02:27'),(9,1,'2018-03-04 16:02:27'),(10,1,'2018-03-04 16:02:27'),(11,1,'2018-03-04 16:02:27'),(12,1,'2018-03-04 16:02:27'),(13,1,'2018-03-04 16:02:27'),(14,1,'2018-03-04 16:02:27'),(15,1,'2018-03-04 16:02:27'),(16,1,'2018-03-04 03:00:00'),(17,1,'2018-03-04 16:25:02'),(18,1,'2018-03-04 17:12:25'),(19,1,'2018-03-04 17:12:49');
+INSERT INTO `pedido` VALUES (1,1,'2018-03-04 16:02:27',0),(2,1,'2018-03-04 16:02:27',0),(3,1,'2018-03-04 16:02:27',100),(4,1,'2018-03-04 16:02:27',0),(5,1,'2018-03-04 16:02:27',0),(6,1,'2018-03-04 16:02:27',0),(7,1,'2018-03-04 16:02:27',0),(8,1,'2018-03-04 16:02:27',0),(9,1,'2018-03-04 16:02:27',0),(10,1,'2018-03-04 16:02:27',0),(11,1,'2018-03-04 16:02:27',0),(12,1,'2018-03-04 16:02:27',0),(13,1,'2018-03-04 16:02:27',0),(14,1,'2018-03-04 16:02:27',0),(15,1,'2018-03-04 16:02:27',0),(16,1,'2018-03-04 03:00:00',0),(17,1,'2018-03-04 16:25:02',0),(18,1,'2018-03-04 17:12:25',0),(19,1,'2018-03-04 17:12:49',0),(20,1,'2018-03-04 17:21:38',0),(21,1,'2018-03-04 17:22:58',0),(22,1,'2018-03-04 17:23:18',0),(23,1,'2018-03-04 17:24:36',0),(24,1,'2018-03-04 17:29:13',0),(25,1,'2018-03-17 21:42:24',1200);
 /*!40000 ALTER TABLE `pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,8 +139,11 @@ CREATE TABLE `usuario` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `login` varchar(20) NOT NULL,
   `senha` varchar(50) NOT NULL,
-  `endereco` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
+  `nome` varchar(100) NOT NULL,
+  `sobrenome` varchar(100) NOT NULL,
+  `endereco` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `usuario_endereco_fk` FOREIGN KEY (`id`) REFERENCES `endereco` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -121,7 +153,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'admin@admin.com','21232f297a57a5a743894a0e4a801fc3','Rua Bla Bla Bla');
+INSERT INTO `usuario` VALUES (1,'admin@admin.com','21232f297a57a5a743894a0e4a801fc3','Vithor','Escames',1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,4 +170,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-04 14:17:58
+-- Dump completed on 2018-03-17 19:01:39
