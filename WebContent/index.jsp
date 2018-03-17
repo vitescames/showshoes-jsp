@@ -17,8 +17,43 @@
 
 	<div class="col-sm-12">
 	
-		<div class="jumbotron">
-			<h1>Promoção na Show Shoes!</h1>
+		<div class="container">
+			
+			<div id="carousel-prop" class="carousel slide" data-ride="carousel">
+
+				  <!-- Indicators -->
+				  <ul class="carousel-indicators">
+				    <li data-target="#carousel-prop" data-slide-to="0" class="active"></li>
+				    <li data-target="#carousel-prop" data-slide-to="1"></li>
+				    <li data-target="#carousel-prop" data-slide-to="2"></li>
+				  </ul>
+				
+				  <!-- The slideshow -->
+				  <div class="carousel-inner">
+				    <div class="carousel-item active">
+				      <img src="img/nike.jpg" alt="Los Angeles">
+				    </div>
+				    
+				    <div class="carousel-item">
+				      <img src="img/adidas.jpg" alt="Chicago">
+				    </div>
+				    
+				    <div class="carousel-item">
+				      <img src="img/puma.jpg" alt="Chicago">
+				    </div>
+				    
+				  </div>
+				
+				  <!-- Left and right controls -->
+				  <a class="carousel-control-prev" href="#carousel-prop" data-slide="prev">
+				    <span class="carousel-control-prev-icon"></span>
+				  </a>
+				  <a class="carousel-control-next" href="#carousel-prop" data-slide="next">
+				    <span class="carousel-control-next-icon"></span>
+				  </a>
+				
+			</div>
+			
 		</div>
 		
 		<div id="carouselExampleControls" class="carousel slide" data-interval="5000" data-ride="carousel">
@@ -30,12 +65,12 @@
 			    <c:if test="${p.index ne 1}">
 			   		<div class="carousel-item">
 			    </c:if>
-					<div class="row col-sm-10" style="margin:auto;">
-			  			<c:forEach var="i" items="${p.listaProdutos}">
-								<%@ include file="main-view.jsp" %>
-			      		</c:forEach>
-					</div>
-			    </div>
+				<div class="row col-sm-10" style="margin:auto;">
+		  			<c:forEach var="i" items="${p.listaProdutos}">
+						<%@ include file="main-view.jsp" %>
+		      		</c:forEach>
+				</div>
+		    </div>
 		   	</c:forEach>
 		  </div>
 		  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -46,9 +81,9 @@
 		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
 		    <span class="sr-only">Next</span>
 		  </a>
-		</div>
-		
+			  
 	</div>
+		
 	
 <%@ include file="import-footer.jsp" %>
 

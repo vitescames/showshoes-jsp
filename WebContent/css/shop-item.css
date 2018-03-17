@@ -1,9 +1,40 @@
 body {
     padding-top: 54px;
+    background: url(../img/body_bg_gs.jpg) repeat left top;
+}
+
+#carousel-prop img{
+	width: 100%;
+    height: 560px;
+}
+
+.navbar-brand{
+	font-family: 'Permanent Marker', cursive;
+}
+
+table{
+	background-color: #acacac7d !important;
+    color: white !important;
+    margin-top: 40px;
+}
+
+table a{
+	color: white !important;
+}
+
+#carousel-prop{
+	margin-bottom: 50px;
+	margin-top: 50px;
 }
 
 .bg-dark {
     background-color: #0054a7!important;
+}
+
+footer {
+	padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #0054a785 !important;
 }
 
 .badge{

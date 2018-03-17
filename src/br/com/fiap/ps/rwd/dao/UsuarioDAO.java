@@ -9,19 +9,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.com.fiap.ps.rwd.bean.Usuario;
+import br.com.fiap.ps.rwd.bo.EnderecoBO;
 import br.com.showshoes.connection.ConnectionFactory;
 
 public class UsuarioDAO {
 	
-	Connection c;
-	PreparedStatement ps;
-	ResultSet rs;
+	private Connection c;
+	private PreparedStatement ps;
+	private ResultSet rs;
 	
 	public UsuarioDAO() throws ClassNotFoundException, SQLException {
 		c = ConnectionFactory.conectar();
 	}
 	
-	public Usuario login(Usuario user) throws SQLException, NoSuchAlgorithmException {
+	public Usuario login(Usuario user) throws SQLException, NoSuchAlgorithmException, ClassNotFoundException {
 		
 		ps = c.prepareStatement("SELECT * FROM usuario WHERE login = ? and senha = ?");
 		
@@ -42,8 +43,10 @@ public class UsuarioDAO {
 		if(rs.next()) {
 			usuario = new Usuario();
 			usuario.setId(rs.getInt("id"));
-			usuario.setEndereco(rs.getString("endereco"));
+			usuario.setEndereco(EnderecoBO.selecionaPorId(usuario.getId()));
 			usuario.setUser(rs.getString("login"));
+			usuario.setNome(rs.getString("nome"));
+			usuario.setSobrenome(rs.getString("sobrenome"));
 			usuario.setPassword(rs.getString("senha"));
 			System.out.println("Entrou!");
 		}
@@ -52,7 +55,7 @@ public class UsuarioDAO {
 		
 	}
 	
-	public Usuario select(int id) throws SQLException {
+	public Usuario select(int id) throws SQLException, ClassNotFoundException {
 		ps = c.prepareStatement("SELECT * FROM usuario WHERE id = ?");
 		
 		ps.setInt(1, id);
@@ -64,8 +67,10 @@ public class UsuarioDAO {
 		if(rs.next()) {
 			usuario = new Usuario();
 			usuario.setId(rs.getInt("id"));
-			usuario.setEndereco(rs.getString("endereco"));
+			usuario.setEndereco(EnderecoBO.selecionaPorId(usuario.getId()));
 			usuario.setUser(rs.getString("login"));
+			usuario.setNome(rs.getString("nome"));
+			usuario.setSobrenome(rs.getString("sobrenome"));
 			usuario.setPassword(rs.getString("senha"));
 		}
 		

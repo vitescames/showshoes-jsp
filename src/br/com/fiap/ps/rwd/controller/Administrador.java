@@ -170,6 +170,7 @@ public class Administrador extends HttpServlet {
 			Pedido pedido = new Pedido();
 			pedido.setDate(dateSQL);
 			pedido.setUsuario(UsuarioBO.trazUsuario((int) session.getAttribute("idUsuario")));
+			pedido.setValor((float) session.getAttribute("precoTotal")); 
 			
 			List<LinhaItem> listaLinhaItens = (ArrayList<LinhaItem>) session.getAttribute("carrinho");
 			
@@ -286,7 +287,7 @@ public class Administrador extends HttpServlet {
 			
 		}
 		
-		double total = 0;
+		float total = 0;
 		
 		for (LinhaItem linhaItem : listaLinhaItens) {
 			total += linhaItem.getProduto().getValor() * linhaItem.getQuantidade();

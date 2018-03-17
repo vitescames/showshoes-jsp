@@ -12,9 +12,9 @@ import br.com.showshoes.connection.ConnectionFactory;
 
 public class ProdutoDAO {
 	
-	ResultSet rs;
-	PreparedStatement ps;
-	Connection c;
+	private Connection c;
+	private PreparedStatement ps;
+	private ResultSet rs;
 	
 	public ProdutoDAO() throws ClassNotFoundException, SQLException {
 		c = ConnectionFactory.conectar();

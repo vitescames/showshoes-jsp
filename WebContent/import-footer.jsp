@@ -1,6 +1,10 @@
-	<footer class="py-5 bg-dark">
+	<footer>
 		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; SHOW SHOES - 2017</p>
+			<p class="m-0 text-center text-white">Copyright &copy; SHOW SHOES - 
+				<script>
+					new Date().getFullYear()>2010&&document.write(new Date().getFullYear());
+				</script>
+			</p>
 		</div>
 	</footer>
 

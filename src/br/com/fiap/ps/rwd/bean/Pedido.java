@@ -8,6 +8,7 @@ public class Pedido {
 	private int id;
 	private Usuario usuario;
 	private Timestamp date;
+	private float valor;
 	private List<LinhaItem> listLinhaItens;
 	
 	public int getId() {
@@ -33,6 +34,12 @@ public class Pedido {
 	}
 	public void setListLinhaItens(List<LinhaItem> listLinhaItens) {
 		this.listLinhaItens = listLinhaItens;
+	}
+	public float getValor() {
+		return valor;
+	}
+	public void setValor(float valor) {
+		this.valor = valor;
 	}	
 
 }

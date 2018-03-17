@@ -20,8 +20,7 @@
 		<div class="row">
 
 			<div class="col-lg-3">
-				<h1 class="my-4">OUR TÊNIS</h1>
-				<div class="list-group">
+				<div class="list-group" style="margin-top: 25px;">
 				<form  method="POST" action="admin">
     				<input type="hidden" name="refresh" value="true">
     				<input type="hidden" name="id" value="6">

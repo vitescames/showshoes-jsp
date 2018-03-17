@@ -22,19 +22,13 @@
 		<h1 class="my-4">
 			VOCÊ DIGITOU UM ENDEREÇO INVÁLIDO
 			<br/> 
-			<small>SHOES SHOW</small>
+			<small>SHOW SHOES</small>
 			<br/>
-			<small><a href="index.jsp"> --INÍCIO--</a></small>
+			<small><a href="admin"> --INÍCIO--</a></small>
 		</h1>
 	
 	
 	</div>
-	
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; OUR SHOES-2017</p>
-		</div>
-	</footer>
 
 <%@ include file="import-footer.jsp" %>
 

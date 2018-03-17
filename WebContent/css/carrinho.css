@@ -17,7 +17,7 @@ img{
 }  
 
 thead{
-	background-color: #28a745;
+	background-color: #0054a7;
 	color:white;
 }
 
@@ -35,11 +35,11 @@ th{
 }
 
 tr{
-	border-bottom: 3px solid #28a745;
+    border-bottom: 3px solid #34c7ff;
 }
     
 table{
-	border: 3px solid #28a745;
+	border: 3px solid #002e5b;
     margin-bottom: 15px;
 }
 

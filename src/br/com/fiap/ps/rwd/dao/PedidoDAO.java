@@ -18,9 +18,9 @@ import br.com.showshoes.connection.ConnectionFactory;
 
 public class PedidoDAO {
 	
-	ResultSet rs;
-	PreparedStatement ps;
-	Connection c;
+	private Connection c;
+	private PreparedStatement ps;
+	private ResultSet rs;
 	
 	public PedidoDAO() throws ClassNotFoundException, SQLException {
 		c = ConnectionFactory.conectar();
@@ -28,10 +28,11 @@ public class PedidoDAO {
 	
 	public boolean add(Pedido pedido) throws SQLException {
 		
-		ps = c.prepareStatement("INSERT INTO pedido (id_cliente, data_realizado) VALUES (?,?)");
+		ps = c.prepareStatement("INSERT INTO pedido (id_cliente, data_realizado, valor) VALUES (?,?,?)");
 		
 		ps.setInt(1, pedido.getUsuario().getId());
 		ps.setTimestamp(2, pedido.getDate());
+		ps.setFloat(3, pedido.getValor());
 		
 		return ps.execute();
 		
@@ -52,6 +53,7 @@ public class PedidoDAO {
 			pedido = new Pedido();
 			pedido.setUsuario(UsuarioBO.trazUsuario(id));
 			pedido.setId(rs.getInt("id"));
+			pedido.setValor(rs.getFloat("valor"));
 			pedido.setDate(rs.getTimestamp("data_realizado"));
 			pedido.setListLinhaItens(LinhaItemBO.trazItensPorPedido(pedido.getId()));
 			listaPedidos.add(pedido);

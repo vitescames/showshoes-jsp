@@ -14,9 +14,9 @@ import br.com.showshoes.connection.ConnectionFactory;
 
 public class LinhaItemDAO {
 	
-	ResultSet rs;
-	PreparedStatement ps;
-	Connection c;
+	private Connection c;
+	private PreparedStatement ps;
+	private ResultSet rs;
 	
 	public LinhaItemDAO() throws ClassNotFoundException, SQLException {
 		c = ConnectionFactory.conectar();
