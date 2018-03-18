@@ -3,10 +3,14 @@
 		<a href="admin?id=2&idProd=${i.id}"><img
 			class="card-img-top" src="${i.urlImg}" alt=""></a>
 		<div class="card-body">
-			<h4 class="card-title">
-				<a href="admin?id=2&idProd=${i.id}">${i.desc}</a>
-			</h4>
-			<p class="card-text">${i.info}</p>
+			<div class="texto-title">
+				<h4 class="card-title">
+					<a href="admin?id=2&idProd=${i.id}">${i.desc}</a>
+				</h4>
+			</div>
+			<div class="texto-info">
+				<p class="card-text">${i.info}</p>
+			</div>
 		</div>
 	</div>
 </div>

@@ -24,31 +24,31 @@
 								<th>Produto</th>
 								<th>Quantidade</th>
 							</thead>
-						<tbody>
-			<c:forEach items="${listaLinhas}" var="l" varStatus="index">
-					<tr>
-						<td class="produto-table">
-							<div class="row">
-								<div class="col-md-3 col-sm-5">
-									<img src="${l.produto.urlImg}"/>
-								</div>
-								<div class="col-md-4 col-sm-6">
-									<p style="font-weight: bold">${l.produto.desc}</p>
-								</div>
-							</div>
-						</td>
-						<td class="quantidade-table">
-							<form action="admin" method="post">
-								<input type="hidden" value="6" name="id"/>
-								<input type="hidden" value="${l.produto.id}" name="idProd"/>
-								<input type="hidden" name="quant" id="${index.index}" value="0"/>
-								<input type="number" value="${l.quantidade}" onchange="changeAmount(this.value, ${index.index}); this.form.submit()"/>
-							</form>
-						</td>
-					</tr>			
-			</c:forEach>			
-				</tbody>	
-			</table>					
+							<tbody>
+								<c:forEach items="${listaLinhas}" var="l" varStatus="index">
+										<tr>
+											<td class="produto-table">
+												<div class="row">
+													<div class="col-md-3 col-sm-5">
+														<img src="${l.produto.urlImg}"/>
+													</div>
+													<div class="col-md-4 col-sm-6">
+														<p style="font-weight: bold">${l.produto.desc}</p>
+													</div>
+												</div>
+											</td>
+											<td class="quantidade-table">
+												<form action="admin" method="post">
+													<input type="hidden" value="6" name="id"/>
+													<input type="hidden" value="${l.produto.id}" name="idProd"/>
+													<input type="hidden" name="quant" id="${index.index}" value="0"/>
+													<input type="number" value="${l.quantidade}" onchange="changeAmount(this.value, ${index.index}); this.form.submit()"/>
+												</form>
+											</td>
+										</tr>			
+								</c:forEach>			
+							</tbody>	
+						</table>					
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#compra">Realizar Compra</button>		
 			
 			<div class="modal fade" id="compra" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

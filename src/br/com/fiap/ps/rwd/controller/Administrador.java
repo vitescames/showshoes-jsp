@@ -8,7 +8,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,6 +30,7 @@ import br.com.fiap.ps.rwd.bo.LinhaItemBO;
 import br.com.fiap.ps.rwd.bo.PedidoBO;
 import br.com.fiap.ps.rwd.bo.ProdutoBO;
 import br.com.fiap.ps.rwd.bo.UsuarioBO;
+import br.com.fiap.ps.rwd.dao.ProdutoDAO;
 
 @WebServlet("/admin")
 public class Administrador extends HttpServlet {
@@ -131,10 +134,39 @@ public class Administrador extends HttpServlet {
 				}
 				
 				break;
+				
+			case 9:
+				
+				try {
+					pesquisarPorParametros(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				break;
 			default:
 				break;
 			}
 
+	}
+	
+	private void pesquisarPorParametros(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
+		
+		Map<String, String> params = new HashMap<String, String>();
+		
+		ProdutoDAO produtoDAO = new ProdutoDAO();
+		
+		if(request.getParameter("marca") != null) {
+			params.put("paramMarca", request.getParameter("marca"));			
+		}
+		
+		if(request.getParameter("preco") != null) {
+			params.put("paramPreco", request.getParameter("preco"));
+		}
+		
+		listagem(request, response, 6, params);
+		request.getRequestDispatcher("filtro.jsp").forward(request, response);
+		
 	}
 
 	private void selecao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, NumberFormatException, ClassNotFoundException, SQLException  {
@@ -225,7 +257,7 @@ public class Administrador extends HttpServlet {
 	
 	private void filtrarProdutos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
 		
-		listagem(request, response, 6);
+		listagem(request, response, 6, null);
 		
 		request.getRequestDispatcher("filtro.jsp").forward(request, response);
 		
@@ -233,7 +265,7 @@ public class Administrador extends HttpServlet {
 	
 	private void exibicaoProdutos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException {
 		
-		listagem(request, response, 3);
+		listagem(request, response, 3, null);
 		
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 		
@@ -300,11 +332,18 @@ public class Administrador extends HttpServlet {
 		
 	}
 
-	private void listagem(HttpServletRequest request, HttpServletResponse response, int prodQuantidade) throws ServletException, IOException, SQLException, ClassNotFoundException {
+	private void listagem(HttpServletRequest request, HttpServletResponse response, int prodQuantidade, Map<String, String> params) throws ServletException, IOException, SQLException, ClassNotFoundException {
 		
 		Pattern pattern = Pattern.compile("(\\s)");	
 		
-		List<ProdutoBean> listaProduto =  ProdutoBO.pesquisa();
+		List<ProdutoBean> listaProduto = null;
+		
+		if(params == null || params.isEmpty()) {
+			listaProduto =  ProdutoBO.pesquisa();
+		} else {
+			listaProduto =  ProdutoBO.pesquisaPorParams(params);
+		}
+		
 		List<Pagina> listaPagina = new ArrayList<Pagina>();
 		
 		int indexPagina = 1;

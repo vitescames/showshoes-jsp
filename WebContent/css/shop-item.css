@@ -12,6 +12,14 @@ body {
 	font-family: 'Permanent Marker', cursive;
 }
 
+.texto-title{
+	min-height: 65px;
+}
+
+.texto-info{
+	min-height: 110px;
+}
+
 table{
 	background-color: #acacac7d !important;
     color: white !important;
