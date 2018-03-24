@@ -1,6 +1,7 @@
 package br.com.fiap.ps.rwd.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -21,6 +22,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+
+import br.com.fiap.ps.rwd.bean.Endereco;
 import br.com.fiap.ps.rwd.bean.LinhaItem;
 import br.com.fiap.ps.rwd.bean.Pagina;
 import br.com.fiap.ps.rwd.bean.Pedido;
@@ -31,6 +35,7 @@ import br.com.fiap.ps.rwd.bo.PedidoBO;
 import br.com.fiap.ps.rwd.bo.ProdutoBO;
 import br.com.fiap.ps.rwd.bo.UsuarioBO;
 import br.com.fiap.ps.rwd.dao.ProdutoDAO;
+import br.com.ss.ws.service.CepService;
 
 @WebServlet("/admin")
 public class Administrador extends HttpServlet {
@@ -144,12 +149,63 @@ public class Administrador extends HttpServlet {
 				}
 				
 				break;
+				
+			case 10:
+				
+				try {
+					cadastrarNovoUsuario(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				break;
+				
+			case 11:
+				
+				try {
+					buscarCep(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				break;
 			default:
 				break;
 			}
 
 	}
 	
+	private void buscarCep(HttpServletRequest request, HttpServletResponse response) throws IOException, org.json.simple.parser.ParseException {
+		
+	    response.setContentType("application/json");
+	    String cep = request.getParameter("cep");
+	    
+	    if(cep != null) {
+	    
+		    JSONObject jobj = new JSONObject();
+		    PrintWriter out = response.getWriter();
+		    
+		    CepService cepService = new CepService();
+		    
+		    Endereco endereco = cepService.buscarCep(cep);
+		    
+		    jobj.put("logradouro", endereco.getLogradouro());
+		    jobj.put("estado", endereco.getEstado());
+		    jobj.put("cidade", endereco.getCidade());
+		    jobj.put("bairro", endereco.getBairro());
+	
+		    out.print(jobj.toString());
+	    
+	    }
+		
+	}
+
+	private void cadastrarNovoUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, org.json.simple.parser.ParseException{
+		
+		request.getRequestDispatcher("cadastro.jsp").forward(request, response);
+		
+	}
+
 	private void pesquisarPorParametros(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
 		
 		Map<String, String> params = new HashMap<String, String>();

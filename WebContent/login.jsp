@@ -50,16 +50,16 @@
 					  <h4>Registrar</h4>
 					</div>
 					<div class="card-block">				
-						<form>
-						
+						<form method="post" action="admin">
+						  <input type="hidden" name="id" value="10">
 						  <div class="form-group">
 						    <label for="exampleInputEmail1">Email</label>
-						    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+						    <input type="email" name="newEmail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 						  </div>
 						  
 				    	  <div class="form-group">
 						    <label for="exampleInputPassword1">Senha</label>
-						    <input type="password" class="form-control" id="exampleInputPassword1">
+						    <input type="password" name="newPass" class="form-control" id="exampleInputPassword1">
 						  </div>
 						  
 						  <button type="submit" class="btn btn-primary">Quero me Cadastrar</button>
