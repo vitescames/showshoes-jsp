@@ -7,9 +7,8 @@
 
 <head>
 
-<link rel="stylesheet" type="text/css" href="css/filtro.css"/>
-
 <%@ include file="import-head.jsp" %>
+<link rel="stylesheet" type="text/css" href="css/filtro.css"/>
 
 </head>
 <body>
@@ -29,11 +28,11 @@
 							
 						<h4>Marca</h4>
 					
-						  <label class="radio-inline"><input type="radio" value="puma" name="marca">Puma</label>
+						  <label class="radio-inline"><input id="puma" type="radio" value="puma" name="marca">Puma</label>
 						
-						  <label class="radio-inline"><input type="radio" value="adidas" name="marca">Adidas</label>
+						  <label class="radio-inline"><input id="adidas" type="radio" value="adidas" name="marca">Adidas</label>
 						
-						  <label class="radio-inline"><input type="radio" value="reebok" name="marca">Reebok</label>
+						  <label class="radio-inline"><input id="reebok" type="radio" value="reebok" name="marca">Reebok</label>
 						  
 					  	<h4>Preço</h4>
 					  	
@@ -110,8 +109,15 @@
 		</div>
 	
 	</div>		
-
-<%@ include file="import-footer.jsp" %>
+	
+	<%@ include file="import-footer.jsp" %>
+	
+	<script type="text/javascript">
+		function guardaSelecionado(){
+			$("#${marcaSelecionada}").attr("checked", "true");
+		}		
+		guardaSelecionado();
+	</script>
 
 </body>
 

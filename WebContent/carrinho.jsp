@@ -15,17 +15,17 @@
 <%@ include file="nav-bar.jsp" %>
 
 	<div class="container">	
-		<c:if test="${listaLinhas eq null}">
+		<c:if test="${carrinho eq null}">
 			<p>Não há itens no carrinho!</p>
 		</c:if>
-		<c:if test="${listaLinhas ne null}">
+		<c:if test="${carrinho ne null}">
 						<table class="col-sm-12">
 							<thead>
 								<th>Produto</th>
 								<th>Quantidade</th>
 							</thead>
 							<tbody>
-								<c:forEach items="${listaLinhas}" var="l" varStatus="index">
+								<c:forEach items="${carrinho}" var="l" varStatus="index">
 										<tr>
 											<td class="produto-table">
 												<div class="row">

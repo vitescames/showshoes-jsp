@@ -18,6 +18,13 @@
 	<div class="col-sm-12">
 	
 		<div class="container">
+		
+			<div class="jumbotron jumb-index">
+		        <h1>Bem-vindo à <span class="font-show">Show Shoes!</span></h1>
+		        <p class="lead">A Show Shoes é uma loja virtual, dedicada à venda de tênis das marcas mais respeitadas internacionalmente. Somente trabalhamos com
+		        produtos de qualidade, fique a vontade para escolher o que mais combina com você.</p>
+		        <p><a class="btn btn-lg btn-outline-success" href="admin?id=4" role="button">Me leve aos produtos!</a></p>
+     		</div>
 			
 			<div id="carousel-prop" class="carousel slide" data-ride="carousel">
 
@@ -54,7 +61,7 @@
 				
 			</div>
 			
-		</div>
+		</div> 
 		
 		<div id="carouselExampleControls" class="carousel slide" data-interval="5000" data-ride="carousel">
 		  <div class="carousel-inner" role="listbox">
@@ -82,6 +89,8 @@
 		    <span class="sr-only">Next</span>
 		  </a>
 			  
+	</div>
+	
 	</div>
 		
 	

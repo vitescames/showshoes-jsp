@@ -220,6 +220,8 @@ public class Administrador extends HttpServlet {
 			params.put("paramPreco", request.getParameter("preco"));
 		}
 		
+		request.setAttribute("marcaSelecionada", request.getParameter("marca"));
+		
 		listagem(request, response, 6, params);
 		request.getRequestDispatcher("filtro.jsp").forward(request, response);
 		
@@ -381,10 +383,9 @@ public class Administrador extends HttpServlet {
 			total += linhaItem.getProduto().getValor() * linhaItem.getQuantidade();
 		}
 				
-		request.setAttribute("listaLinhas", listaLinhaItens);
 		session.setAttribute("precoTotal", total);
 		session.setAttribute("quantCarrinho", listaLinhaItens.size());
-		request.getRequestDispatcher("carrinho.jsp").forward(request, response);		
+		response.sendRedirect("carrinho.jsp");		
 		
 	}
 
